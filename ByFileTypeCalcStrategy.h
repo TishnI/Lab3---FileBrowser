@@ -9,9 +9,7 @@ class ByFileTypeCalcStrategy: public CalculationStrategy
 public:
     ByFileTypeCalcStrategy() = default;
     void Calculate(const QString& path);
-
-private:
-    QMap<QString, qint64> map;
+    void GetStatus();
 };
 
 #endif // BYFILETYPECALCSTRATEGY_H

@@ -8,6 +8,7 @@ CONFIG += c++17 cmdline
 
 SOURCES += \
         ByFileTypeCalcStrategy.cpp \
+        ByFolderCalcStrategy.cpp \
         CalculationStrategy.cpp \
         main.cpp
 
@@ -18,4 +19,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     ByFileTypeCalcStrategy.h \
+    ByFolderCalcStrategy.h \
     CalculationStrategy.h
