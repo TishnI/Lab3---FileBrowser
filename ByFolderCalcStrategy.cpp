@@ -14,6 +14,7 @@ void ByFolderCalcStrategy::CalculateInDir(const QString &path, QMap<QString, dou
 
 
     QFileInfoList list = dir.entryInfoList();
+    map[dir.dirName()] = 0;
     for(int i = 0; i < list.size(); ++i)
     {
         QString dirName = dir.dirName();
