@@ -74,6 +74,7 @@ int main(int argc, char *argv[])
         QMap<QString, double> result;
 
         fileBrowser->SetStrategy(fileTypeStrategy);
+        //fileBrowser->SetStrategy(nullptr);
         fileBrowser->Calculate(dirPath);
         result = fileBrowser->GetInfo();
 

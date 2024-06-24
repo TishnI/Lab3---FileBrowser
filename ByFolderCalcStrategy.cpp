@@ -29,14 +29,3 @@ void ByFolderCalcStrategy::CalculateInDir(const QString &path, QMap<QString, dou
         }
     }
 }
-
-
-/*void ByFolderCalcStrategy::GetStatus()
-{
-    QMapIterator<QString, double> it(map);
-    while(it.hasNext())
-    {
-        it.next();
-        qDebug()<< it.key() << ": "<< 100 * it.value()/ totalSize;
-    }
-}*/

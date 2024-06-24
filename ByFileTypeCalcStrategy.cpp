@@ -26,13 +26,3 @@ void ByFileTypeCalcStrategy::CalculateInDir(const QString &path, QMap<QString, d
         }
     }
 }
-
-/*void ByFileTypeCalcStrategy::GetStatus()
-{
-    QMapIterator<QString, double> it(map);
-    while(it.hasNext())
-    {
-        it.next();
-        qDebug()<< it.key() << ": "<< 100 * it.value()/totalSize;
-    }
-}*/
