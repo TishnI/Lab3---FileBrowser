@@ -10,6 +10,7 @@ SOURCES += \
         ByFileTypeCalcStrategy.cpp \
         ByFolderCalcStrategy.cpp \
         CalculationStrategy.cpp \
+        FileBrowser.cpp \
         main.cpp
 
 # Default rules for deployment.
@@ -20,4 +21,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     ByFileTypeCalcStrategy.h \
     ByFolderCalcStrategy.h \
-    CalculationStrategy.h
+    CalculationStrategy.h \
+    FileBrowser.h
