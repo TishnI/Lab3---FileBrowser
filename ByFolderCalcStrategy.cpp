@@ -1,6 +1,13 @@
 #include "ByFolderCalcStrategy.h"
 
-void ByFolderCalcStrategy::Calculate(const QString &path)
+QMap<QString, double> ByFolderCalcStrategy::Calculate(const QString &path)
+{
+    QMap<QString, double> folders;
+    CalculateInDir(path,folders);
+    return folders;
+}
+
+void ByFolderCalcStrategy::CalculateInDir(const QString &path, QMap<QString, double>& map)
 {
     QDir dir(path);
     dir.setFilter(QDir::Files | QDir::AllDirs | QDir::NoDotAndDotDot );
@@ -13,17 +20,17 @@ void ByFolderCalcStrategy::Calculate(const QString &path)
         QFileInfo fileInfo = list.at(i);
         if(fileInfo.isDir())
         {
-            Calculate(fileInfo.filePath());
+            CalculateInDir(fileInfo.filePath(), map);
         }
         else
         {
-            totalSize += fileInfo.size();
             map[dirName] += fileInfo.size();
         }
     }
 }
 
-void ByFolderCalcStrategy::GetStatus()
+
+/*void ByFolderCalcStrategy::GetStatus()
 {
     QMapIterator<QString, double> it(map);
     while(it.hasNext())
@@ -31,4 +38,4 @@ void ByFolderCalcStrategy::GetStatus()
         it.next();
         qDebug()<< it.key() << ": "<< 100 * it.value()/ totalSize;
     }
-}
+}*/

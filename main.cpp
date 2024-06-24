@@ -18,8 +18,6 @@ int main(int argc, char *argv[])
     calculation = fileTypeStrategy;
 
     calculation->Calculate("Files");
-    calculation->GetStatus();
-
 
     return a.exec();
 }

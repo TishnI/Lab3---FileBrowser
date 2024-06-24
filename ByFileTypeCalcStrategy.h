@@ -2,14 +2,15 @@
 #define BYFILETYPECALCSTRATEGY_H
 
 #include "CalculationStrategy.h"
-#include <QMap>
 
 class ByFileTypeCalcStrategy: public CalculationStrategy
 {
 public:
     ByFileTypeCalcStrategy() = default;
-    void Calculate(const QString& path);
-    void GetStatus();
+    QMap<QString, double> Calculate(const QString& path);
+
+private:
+    void CalculateInDir(const QString& path, QMap<QString, double>& map);
 };
 
 #endif // BYFILETYPECALCSTRATEGY_H

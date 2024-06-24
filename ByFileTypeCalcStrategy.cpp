@@ -1,6 +1,13 @@
 #include "ByFileTypeCalcStrategy.h"
 
-void ByFileTypeCalcStrategy::Calculate(const QString &path)
+QMap<QString, double> ByFileTypeCalcStrategy::Calculate(const QString &path)
+{
+    QMap<QString, double> typeOfFile;
+    CalculateInDir(path, typeOfFile);
+    return typeOfFile;
+}
+
+void ByFileTypeCalcStrategy::CalculateInDir(const QString &path, QMap<QString, double>& map)
 {
     QDir dir(path);
     dir.setFilter(QDir::Files | QDir::AllDirs | QDir::NoDotAndDotDot );
@@ -11,18 +18,16 @@ void ByFileTypeCalcStrategy::Calculate(const QString &path)
         QFileInfo fileInfo = list.at(i);
         if(fileInfo.isDir())
         {
-            Calculate(fileInfo.filePath());
+            CalculateInDir(fileInfo.filePath(), map);
         }
         else
         {
-            totalSize += fileInfo.size();
             map[fileInfo.suffix()] += fileInfo.size();
-
         }
     }
 }
 
-void ByFileTypeCalcStrategy::GetStatus()
+/*void ByFileTypeCalcStrategy::GetStatus()
 {
     QMapIterator<QString, double> it(map);
     while(it.hasNext())
@@ -30,4 +35,4 @@ void ByFileTypeCalcStrategy::GetStatus()
         it.next();
         qDebug()<< it.key() << ": "<< 100 * it.value()/totalSize;
     }
-}
+}*/
