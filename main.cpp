@@ -75,14 +75,12 @@ int main(int argc, char *argv[])
 
         fileBrowser->SetStrategy(fileTypeStrategy);
         //fileBrowser->SetStrategy(nullptr);
-        fileBrowser->Calculate(dirPath);
-        result = fileBrowser->GetInfo();
+        result = fileBrowser->Calculate(dirPath);
 
         PrintResult(result);
 
         fileBrowser->SetStrategy(folderStrategy);
-        fileBrowser->Calculate(dirPath);
-        result = fileBrowser->GetInfo();
+        result = fileBrowser->Calculate(dirPath);
 
         PrintResult(result);
     }
