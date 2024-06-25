@@ -7,14 +7,14 @@ FileBrowser::~FileBrowser()
     delete strategy;
 }
 
-void FileBrowser::Calculate(const QString &path)
+QMap<QString, double> FileBrowser::Calculate(const QString &path)
 {
     if(strategy == nullptr)
     {
         qWarning()<<"Calculate: Strategy not initialized";
-        return;
+        return QMap<QString, double>();
     }
-    map = strategy->Calculate(path);
+    return strategy->Calculate(path);
 }
 
 void FileBrowser::SetStrategy(CalculationStrategy *calcStrategy)
@@ -27,7 +27,3 @@ void FileBrowser::SetStrategy(CalculationStrategy *calcStrategy)
     strategy = calcStrategy;
 }
 
-QMap<QString, double> FileBrowser::GetInfo()
-{
-    return map;
-}

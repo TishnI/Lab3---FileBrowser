@@ -9,7 +9,7 @@
 #include "FileBrowser.h"
 
 
-void PrintResult(const QMap<QString, double>& result)
+void PrintResult(const QMap<QString, double>& result, double accuracy = 0.01)
 {
     QTextStream out(stdout);
     double totalSize = 0;
@@ -26,18 +26,21 @@ void PrintResult(const QMap<QString, double>& result)
 
     for(auto key : result.keys())
     {
-        double value = round((100 * result[key]/totalSize)*100)/100;
-        if(value==0 && result[key]!=0)
+        double percent = 0.0;
+        if(totalSize != 0)
         {
-            out<<key<<"\t"<<result[key]/1000<<"KB \t<0.01%"<<Qt::endl;
+            percent = 100 * result[key]/totalSize;
         }
-        else if (result[key] == 0)
+
+        double roundedPercent = round(100*percent)/100;
+
+        if(percent < accuracy && percent != 0)
         {
-            out<<key<<"\t"<<result[key]<<"KB\t\t0%"<<Qt::endl;
+            out<<key<<"\t"<<result[key]/1024<<"KB \t<"<<accuracy<<"%"<<Qt::endl;
         }
         else
         {
-            out<<key<<"\t"<<result[key]/1000<<"KB\t"<<value<<"%"<<Qt::endl;
+            out<<key<<"\t"<<result[key]/1024<<"KB\t"<<roundedPercent<<"%"<<Qt::endl;
         }
     }
 
@@ -75,14 +78,12 @@ int main(int argc, char *argv[])
 
         fileBrowser->SetStrategy(fileTypeStrategy);
         //fileBrowser->SetStrategy(nullptr);
-        fileBrowser->Calculate(dirPath);
-        result = fileBrowser->GetInfo();
+        result = fileBrowser->Calculate(dirPath);
 
         PrintResult(result);
 
         fileBrowser->SetStrategy(folderStrategy);
-        fileBrowser->Calculate(dirPath);
-        result = fileBrowser->GetInfo();
+        result = fileBrowser->Calculate(dirPath);
 
         PrintResult(result);
     }
