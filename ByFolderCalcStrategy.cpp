@@ -10,7 +10,7 @@ QMap<QString, double> ByFolderCalcStrategy::Calculate(const QString &path)
 void ByFolderCalcStrategy::CalculateInDir(const QString &path, QMap<QString, double>& map)
 {
     QDir dir(path);
-    dir.setFilter(QDir::Files | QDir::AllDirs | QDir::NoDotAndDotDot );
+    dir.setFilter(QDir::Files | QDir::AllDirs | QDir::NoDotAndDotDot | QDir::NoSymLinks );
 
 
     QFileInfoList list = dir.entryInfoList();

@@ -13,6 +13,9 @@ public:
     void SetStrategy(CalculationStrategy* calcStrategy);
 
 private:
+
+
+private:
     CalculationStrategy* strategy;
 };
 
