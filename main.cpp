@@ -14,7 +14,6 @@ void PrintResult(const QMap<QString, double>& result, double accuracy = 0.01)
     QTextStream out(stdout);
     double totalSize = 0;
 
-
     if(result.isEmpty())
     {
         return;

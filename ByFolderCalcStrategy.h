@@ -10,7 +10,7 @@ public:
     QMap<QString, double> Calculate(const QString& path);
 
 private:
-    void CalculateInDir(const QString& path, QMap<QString, double>& map);
+    double CalculateInDir(const QString& path);
 };
 
 #endif // BYFOLDERCALCSTRATEGY_H
