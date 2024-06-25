@@ -13,7 +13,7 @@ void PrintResult(const QMap<QString, double>& result, double accuracy = 0.01)
 {
     QTextStream out(stdout);
     double totalSize = 0;
-    double percent = 0.0;
+
 
     if(result.isEmpty())
     {
@@ -27,6 +27,7 @@ void PrintResult(const QMap<QString, double>& result, double accuracy = 0.01)
 
     for(auto key : result.keys())
     {
+        double percent = 0.0;
         if(totalSize != 0)
         {
             percent = 100 * result[key]/totalSize;
